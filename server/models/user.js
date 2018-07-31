@@ -23,7 +23,11 @@ const userSchema = new mongoose.Schema({
     },
     profileImageUrl: {
         type: String
-    }
+    },
+    messages:  [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Message" //dont need to require message.js because both files are exported
+    }]
 });
 
 userSchema.pre("save", async function(next) {
