@@ -39,7 +39,7 @@ userSchema.pre("save", async function(next) {
     }
 }); //This is a pre hook
 
-userSchema.method.comparePassword = async function(candidatePassword, next) { //everything is async so need to tell express when to move on to next middleware thats why we need to use the next function
+userSchema.methods.comparePassword = async function(candidatePassword, next) { //everything is async so need to tell express when to move on to next middleware thats why we need to use the next function
     try {
         let isMatch = await bcrypt.compare(candidatePassword, this.password);
         return isMatch;
