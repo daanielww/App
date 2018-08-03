@@ -7,6 +7,8 @@ export function configureStore(){
         rootReducer, 
         compose(
             applyMiddleware(thunk),
-            window.devToolsExtension ? windowdevToolsExtension() : f => f)
+            window.devToolsExtension ? window.devToolsExtension() : f => f)
     );
+    
+    return store;
 }
