@@ -17,7 +17,7 @@ const Main = props => {
                 }}/>
                 <Route exact path="/signup" render={props => {
                     return(
-                        <AuthForm buttonText="Sign me Up" heading="Join Now." {...props}/>
+                        <AuthForm buttonText="Sign me Up" heading="Join Now." signUp {...props}/>
                     )
                 }}/>
             </Switch>
