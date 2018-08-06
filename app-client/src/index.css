@@ -10,9 +10,10 @@ body {
 
 .navbar a {
     font-weight: bold;
+    color: white;
 }
 
-.navbar li:hover {
+.navbar a:hover {
     color: white;
     text-decoration: underline;
     cursor: pointer;
