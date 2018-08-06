@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import errors from "../store/reducers/errors";
 
 export default class AuthForm extends Component {
     constructor(props) {
@@ -19,15 +20,26 @@ export default class AuthForm extends Component {
         })
     };
 
+    handleSubmit = e => {
+        e.preventDefault();
+        const authType = this.props.signUp ? "signup" : "signin";
+        this.props.onAuth(authType, this.state).then(() => {
+          console.log("LOGGED IN / REGISTERED SUCCESSFULLY")
+        }).catch(err => {
+            console.log("Login/registration failed")
+        })
+    }
+
     render() {
         const {email, username, password, profileImageUrl} = this.state
-        const {heading, buttonText, signUp} = this.props;
+        const {heading, buttonText, signUp, errors} = this.props;
         return(
             <div>
                 <div className= "row justify-content-md-center text-center">
                     <div className="col-md-6">
                         <form onSubmit={this.handleSubmit}>
                             <h2>{heading}</h2>
+                            {errors.message && <div className="alert alert-danger">{errors.message}</div>}
                             <label htmlFor="email">Email:</label>
                             <input 
                                 className="form-control"
@@ -41,7 +53,7 @@ export default class AuthForm extends Component {
                             <input 
                                 className="form-control"
                                 id="Password"
-                                name="Password"
+                                name="password"
                                 onChange={this.handleChange}
                                 type="password"
                                 value={password}
@@ -68,6 +80,9 @@ export default class AuthForm extends Component {
                                 />
                                 </div>
                             )}
+                            <button type="submit" className="btn btn-primary btn-block btn-lg">
+                                {buttonText}
+                            </button>
                         </form>
                     </div>
                 </div>
