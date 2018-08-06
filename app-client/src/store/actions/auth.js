@@ -21,7 +21,7 @@ export function authUser(type, userData) {
           resolve(); // indicate that the API call succeeded
         })
         .catch(err => {
-          dispatch(addError(err.message))
+          dispatch(addError(err.message)) //getting the error msg that is returned back from api call
           reject(); // indicate the API call failed
         });
     });
