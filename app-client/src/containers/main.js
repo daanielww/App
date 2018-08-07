@@ -6,12 +6,13 @@ import AuthForm from "../components/authForm";
 import {authUser} from "../store/actions/auth";
 import {removeError} from "../store/actions/errors";
 
+//The {..props} are for some default props like the history object that are just present by default
 const Main = props => {
-    const {authUser, errors, removeError} = props;
+    const {authUser, errors, removeError, currentUser} = props;
     return (
-        <div className="container">
+        <div className="container"> 
             <Switch>
-                <Route exact path="/" render={props => <Homepage {...props}/>}/>
+                <Route exact path="/" render={props => <Homepage currentUser={currentUser} {...props}/>}/> 
                 <Route exact path="/signin" render={props => {
                     return(
                         <AuthForm

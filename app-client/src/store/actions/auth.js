@@ -9,6 +9,13 @@ export function setCurrentUser(user) {
   };
 }
 
+export function logout(){ //dispatch which causes an action rerenders the views. so the homepage goes back to normal as the isAuthenticated property is changed and jwt tokens removed so goes back to default homepage
+  return dispatch => {
+    localStorage.clear(); //removes the jwt token and then sets the state again so user not logged in anymore
+    dispatch(setCurrentUser({})) //sets current user with an empty user object so the reducer will make isAuthenticated false
+  }
+}
+
 export function authUser(type, userData) {
   return dispatch => {
     // wrap our thunk in a promise so we can wait for the API call
@@ -16,8 +23,8 @@ export function authUser(type, userData) {
       return apiCall("post", `/api/auth/${type}`, userData)
         .then(({ token, ...user }) => {
           localStorage.setItem("jwtToken", token);
-          dispatch(setCurrentUser(user));
-          dispatch(removeError())
+          dispatch(setCurrentUser(user)); //makes isAuthenticated true bc the user object won't be empty
+          dispatch(removeError());
           resolve(); // indicate that the API call succeeded
         })
         .catch(err => {
