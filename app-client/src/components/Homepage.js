@@ -16,7 +16,7 @@ const Homepage = ({ currentUser }) => {
   }
   return (
     <div>
-      <h1>YOU MADE IT!</h1>
+      <MessageTimeline />
     </div>
   );
 };
