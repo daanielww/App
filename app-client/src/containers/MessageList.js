@@ -14,7 +14,7 @@ class MessageList extends Component {
             key={m._id} 
             date={m.createAt} 
             text={m.text} 
-            username={m.username}
+            username={m.user.username}
             profileImageUrl={m.user.profileImageUrl}
             />
         ))
