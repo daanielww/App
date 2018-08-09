@@ -5,6 +5,8 @@ import Homepage from "../components/Homepage";
 import AuthForm from "../components/authForm";
 import {authUser} from "../store/actions/auth";
 import {removeError} from "../store/actions/errors";
+import withAuth from "../hocs/withAuth"; //default exports so dont need to destructure
+import MessageForm from "../containers/messageForm"
 
 //The {..props} are for some default props like the history object that are just present by default
 const Main = props => {
@@ -37,6 +39,7 @@ const Main = props => {
                         />
                     )
                 }}/>
+                <Route path="/users/:id/messages/new" component={withAuth(MessageForm)} />
             </Switch>
         </div>
     );
