@@ -26,3 +26,16 @@ export const postNewMessage = text=>(dispatch, getState) => {
     .then(res => {})
     .catch(err =>dispatch(addError(err.message)));
 }
+
+export const remove = id => ({
+    type: REMOVE_MESSAGE,
+    id
+})
+
+export const removeMessage = (user_id, message) => {
+    return dispatch => {
+        return apiCall("delete", `/api/users/${user_id}/messages/${message._id}`)
+        .then(() => dispatch(remove(message._id)))
+        .catch(err => dispatch(addError(err.message)));
+    }
+}
