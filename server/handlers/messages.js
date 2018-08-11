@@ -35,7 +35,7 @@ exports.getMessage = async function(req, res, next){
 // note: findbyid and remove function in mongoose doesn't work with the pre hook
 exports.deleteMessage = async function(req, res, next) { //
     try{
-        let foundMessage = await db.message.findById(req.params.message._id)
+        let foundMessage = await db.Message.findById(req.params.message_id)
         await foundMessage.remove()
         return res.status(200).json(foundMessage);
     } catch(e) {

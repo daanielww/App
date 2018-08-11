@@ -32,10 +32,10 @@ export const remove = id => ({
     id
 })
 
-export const removeMessage = (user_id, message) => {
+export const removeMessage = (user_id, message_Id) => {
     return dispatch => {
-        return apiCall("delete", `/api/users/${user_id}/messages/${message._id}`)
-        .then(() => dispatch(remove(message._id)))
+        return apiCall("delete", `/api/users/${user_id}/messages/${message_Id}`)
+        .then(() => dispatch(remove(message_Id)))
         .catch(err => dispatch(addError(err.message)));
     }
 }
